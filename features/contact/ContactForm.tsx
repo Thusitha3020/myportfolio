@@ -89,23 +89,23 @@ export function ContactForm() {
                   Email
                 </p>
                 <a
-                  href="mailto:alex@example.com"
+                  href="mailto:thusitha3020@gmail.com"
                   className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors"
                 >
-                  alex@example.com
+                  thusitha3020@gmail.com
                 </a>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[hsl(var(--secondary)/0.15)] flex items-center justify-center shrink-0">
-                <MapPin className="w-5 h-5 text-[hsl(var(--secondary))]" />
+              <div className="w-10 h-10 rounded-xl bg-[hsl(var(--accent)/0.15)] flex items-center justify-center shrink-0">
+                <MapPin className="w-5 h-5 text-[hsl(var(--accent))]" />
               </div>
               <div>
                 <p className="font-medium text-sm text-[hsl(var(--foreground))]">
                   Location
                 </p>
                 <p className="text-sm text-[hsl(var(--muted-foreground))]">
-                  San Francisco, CA — Available remotely
+                  Colombo, Sri Lanka — Available for on-site & remote
                 </p>
               </div>
             </div>

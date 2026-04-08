@@ -19,6 +19,8 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = createMetadata();
 
+import { HudOverlay } from "@/components/ui/HudOverlay";
+
 export default function RootLayout({
   children,
 }: {
@@ -29,6 +31,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-[hsl(var(--background))] text-[hsl(var(--foreground))]`}
       >
+        <HudOverlay />
         <div className="noise-overlay" aria-hidden="true" />
         <Navbar />
         <main id="main-content" tabIndex={-1}>

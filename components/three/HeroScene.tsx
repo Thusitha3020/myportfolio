@@ -1,110 +1,143 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial } from "@react-three/drei";
+import { Points, PointMaterial, Line } from "@react-three/drei";
 import * as THREE from "three";
 
-function ParticleField() {
-  const ref = useRef<THREE.Points>(null);
+/**
+ * Geometric hardware lattice representing a circuit flow.
+ * Now reacts to mouse movement for depth and "gamified" feel.
+ */
+function HardwareLattice() {
+  const groupRef = useRef<THREE.Group>(null);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMouse({
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: -(e.clientY / window.innerHeight) * 2 + 1,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // Nodes
+  const nodeCount = 600;
   const positions = useMemo(() => {
-    const count = 2000;
-    const arr = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 10;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 6;
+    const arr = new Float32Array(nodeCount * 3);
+    for (let i = 0; i < nodeCount; i++) {
+      arr[i * 3] = (Math.random() - 0.5) * 15;
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 15;
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 15;
     }
     return arr;
   }, []);
 
+  // Wires
+  const wireLines = useMemo(() => {
+    const lines = [];
+    for (let i = 0; i < 80; i++) {
+      const start = [
+        (Math.random() - 0.5) * 12,
+        (Math.random() - 0.5) * 12,
+        (Math.random() - 0.5) * 12,
+      ];
+      const end = [
+        start[0] + (Math.random() - 0.5) * 3,
+        start[1] + (Math.random() - 0.5) * 3,
+        start[2] + (Math.random() - 0.5) * 3,
+      ];
+      lines.push({ start: start as [number, number, number], end: end as [number, number, number] });
+    }
+    return lines;
+  }, []);
+
   useFrame((state) => {
-    if (!ref.current) return;
+    if (!groupRef.current) return;
     const t = state.clock.getElapsedTime();
-    ref.current.rotation.x = t * 0.03;
-    ref.current.rotation.y = t * 0.05;
-    // Gentle drift
-    ref.current.position.y = Math.sin(t * 0.2) * 0.1;
+    
+    // Parallax effect based on mouse
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouse.x * 0.2 + t * 0.05, 0.1);
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouse.y * 0.2, 0.1);
+    groupRef.current.position.z = THREE.MathUtils.lerp(groupRef.current.position.z, mouse.y * 0.5, 0.1);
   });
 
   return (
-    <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
+    <group ref={groupRef}>
+      <Points positions={positions} stride={3} frustumCulled={false}>
+        <PointMaterial
+          transparent
+          color="#06b6d4"
+          size={0.06}
+          sizeAttenuation
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+        />
+      </Points>
+      {wireLines.map((line, i) => (
+        <Line
+          key={i}
+          points={[line.start, line.end]}
+          color="#818cf8"
+          lineWidth={0.8}
+          transparent
+          opacity={0.2}
+        />
+      ))}
+    </group>
+  );
+}
+
+/**
+ * Background technical scanlines/grid effect
+ */
+function TechGrid() {
+  const gridPositions = useMemo(() => {
+    const count = 4000;
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      arr[i * 3] = (Math.random() - 0.5) * 80;
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 80;
+      arr[i * 3 + 2] = -30;
+    }
+    return arr;
+  }, []);
+
+  return (
+    <Points positions={gridPositions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color="#a78bfa"
-        size={0.015}
+        color="#06b6d4"
+        size={0.02}
         sizeAttenuation
         depthWrite={false}
-        opacity={0.7}
+        opacity={0.2}
       />
     </Points>
   );
 }
 
-function FloatingRing() {
-  const ref = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (!ref.current) return;
-    const t = state.clock.getElapsedTime();
-    ref.current.rotation.x = t * 0.2;
-    ref.current.rotation.y = t * 0.15;
-    ref.current.position.y = Math.sin(t * 0.5) * 0.3;
-  });
-
-  return (
-    <mesh ref={ref} position={[2.5, 0, -2]}>
-      <torusGeometry args={[1.2, 0.03, 16, 80]} />
-      <meshStandardMaterial
-        color="#7c3aed"
-        emissive="#7c3aed"
-        emissiveIntensity={0.5}
-        transparent
-        opacity={0.5}
-      />
-    </mesh>
-  );
-}
-
-function FloatingSphere() {
-  const ref = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (!ref.current) return;
-    const t = state.clock.getElapsedTime();
-    ref.current.position.y = Math.sin(t * 0.4) * 0.4;
-    ref.current.position.x = Math.cos(t * 0.3) * 0.2 - 2.5;
-    ref.current.rotation.y = t * 0.2;
-  });
-
-  return (
-    <mesh ref={ref} position={[-2.5, 0, -1.5]}>
-      <icosahedronGeometry args={[0.5, 1]} />
-      <meshStandardMaterial
-        color="#06b6d4"
-        emissive="#0891b2"
-        emissiveIntensity={0.4}
-        wireframe
-      />
-    </mesh>
-  );
-}
-
 export function HeroScene() {
   return (
-    <Canvas
-      camera={{ position: [0, 0, 3], fov: 60 }}
-      className="!absolute inset-0"
-      gl={{ antialias: true, alpha: true }}
-      dpr={[1, 1.5]}
-    >
-      <ambientLight intensity={0.3} />
-      <pointLight position={[5, 5, 5]} intensity={0.8} color="#7c3aed" />
-      <pointLight position={[-5, -5, 5]} intensity={0.5} color="#06b6d4" />
-      <ParticleField />
-      <FloatingRing />
-      <FloatingSphere />
-    </Canvas>
+    <div className="w-full h-full relative">
+      <Canvas
+        camera={{ position: [0, 0, 12], fov: 45 }}
+        className="!absolute inset-0"
+        gl={{ antialias: true, alpha: true }}
+        dpr={[1, 2]}
+      >
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={2} color="#06b6d4" />
+        <pointLight position={[-10, -10, -10]} intensity={1} color="#818cf8" />
+        
+        <HardwareLattice />
+        <TechGrid />
+      </Canvas>
+      {/* Dynamic scanline overlay within the canvas area */}
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.05)_50%),linear-gradient(90deg,rgba(255,0,0,0.01),rgba(0,255,0,0.01),rgba(0,0,255,0.01))] bg-[length:100%_2px,2px_100%]" />
+    </div>
   );
 }

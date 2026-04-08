@@ -7,35 +7,33 @@ import { Badge } from "@/components/ui/Badge";
 
 const skills = [
   {
-    category: "Frontend",
+    category: "Technical Hardware",
     items: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "GSAP",
-      "Three.js",
+      "Arduino & Embedded Programming",
+      "IoT Systems (ESP8266, WiFi)",
+      "Sensor Integration",
+      "Robotics Development",
+      "Embedded C++",
     ],
   },
   {
-    category: "Backend",
-    items: ["Node.js", "Go", "FastAPI", "PostgreSQL", "Redis", "GraphQL"],
-  },
-  {
-    category: "DevOps & Tools",
-    items: ["Docker", "AWS", "Vercel", "GitHub Actions", "Terraform", "K8s"],
-  },
-  {
-    category: "Design",
-    items: ["Figma", "Framer", "Storybook", "Design Systems", "Accessibility"],
+    category: "Thinking & Style",
+    items: [
+      "Problem Solving",
+      "Fast Learning",
+      "Creative Thinking",
+      "Teamwork",
+      "Leadership",
+      "Clear Communication",
+    ],
   },
 ];
 
 const stats = [
-  { value: "5+", label: "Years of Experience" },
-  { value: "30+", label: "Projects Shipped" },
-  { value: "12+", label: "Open Source Repos" },
-  { value: "∞", label: "Coffees Consumed" },
+  { value: "BIT", label: "Undergraduate (Hons)" },
+  { value: "2nd Runner-Up", label: "Robotics Hackathon" },
+  { value: "2025", label: "Thinkfest Achievement" },
+  { value: "100%", label: "Committed" },
 ];
 
 export function AboutSection() {
@@ -51,26 +49,36 @@ export function AboutSection() {
         <div className="space-y-8">
           <AnimatedContainer animation="fadeUp">
             <span className="text-sm font-mono text-[hsl(var(--primary))] tracking-widest uppercase">
-              01. About Me
+              01. The Developer
             </span>
             <h2 className="font-display font-bold text-4xl sm:text-5xl text-[hsl(var(--foreground))] mt-3 leading-tight">
-              Passionate about{" "}
-              <span className="gradient-text">great software</span>
+              Building <span className="gradient-text">Intelligent Machines</span>
             </h2>
           </AnimatedContainer>
 
           <AnimatedContainer animation="fadeUp" delay={0.1}>
             <p className="text-[hsl(var(--muted-foreground))] leading-relaxed text-lg">
-              I&apos;m a full-stack engineer with over 5 years of experience
-              building products that sit at the intersection of performance and
-              aesthetic elegance. I care deeply about developer experience,
-              clean architecture, and making the web feel alive.
+              I build intelligent machines that can sense, decide, and act without human control. My focus is on robotics and IoT solutions designed for real environments like factories and smart spaces.
             </p>
             <p className="text-[hsl(var(--muted-foreground))] leading-relaxed mt-4">
-              When I&apos;m not writing code, I&apos;m tinkering with 3D
-              graphics, contributing to open-source projects, or diving into the
-              latest research on compilers and distributed systems.
+              Right now, I’m working on autonomous systems that inspect machines, detect hazards, and send real-time alerts. I enjoy combining hardware and software into one working product — not just simulations, but real devices that move and react.
             </p>
+            <div className="mt-8 space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2" />
+                <div>
+                  <h4 className="font-bold text-foreground">Bachelor of Information Technology (Hons)</h4>
+                  <p className="text-sm text-muted-foreground">ESOFT Uni Colombo (2022 – Present) | Specialization: Robotics</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2" />
+                <div>
+                  <h4 className="font-bold text-foreground">Diploma in Graphic Designing (High Distinction)</h4>
+                  <p className="text-sm text-muted-foreground">IDM Campus (2022)</p>
+                </div>
+              </div>
+            </div>
           </AnimatedContainer>
 
           {/* Stats */}
@@ -81,7 +89,7 @@ export function AboutSection() {
                   key={stat.label}
                   className="p-4 rounded-xl glass border border-[hsl(var(--border)/0.5)] text-center"
                 >
-                  <div className="font-display font-bold text-3xl gradient-text">
+                  <div className="font-display font-bold text-xl gradient-text">
                     {stat.value}
                   </div>
                   <div className="text-xs text-[hsl(var(--muted-foreground))] mt-1 leading-tight">
@@ -100,13 +108,11 @@ export function AboutSection() {
               ref={imageRef}
               className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-8"
             >
-              {/* Placeholder avatar with gradient */}
               <div className="absolute inset-0 mesh-bg flex items-center justify-center">
                 <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] flex items-center justify-center text-5xl font-display font-bold text-white shadow-2xl">
-                  AC
+                  TSP
                 </div>
               </div>
-              {/* Decorative frame */}
               <div className="absolute inset-0 rounded-2xl border border-[hsl(var(--primary)/0.3)]" />
               <div className="absolute -bottom-1 -right-1 w-24 h-24 rounded-2xl border-2 border-[hsl(var(--accent)/0.3)] -z-10" />
             </div>

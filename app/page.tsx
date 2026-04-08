@@ -1,6 +1,7 @@
 import { createMetadata } from "@/lib/metadata";
 import { HeroSection } from "@/features/hero/HeroSection";
 import { AboutSection } from "@/features/about/AboutSection";
+import { ExperienceSection } from "@/features/about/ExperienceSection";
 import { ProjectsSection } from "@/features/projects/ProjectsSection";
 import { ContactForm } from "@/features/contact/ContactForm";
 
@@ -11,6 +12,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <AboutSection />
+      <ExperienceSection />
       <ProjectsSection />
       <ContactForm />
     </>

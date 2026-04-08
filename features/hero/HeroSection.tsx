@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { ArrowDown, Download } from "lucide-react";
 import { IconGithub, IconLinkedin, IconTwitterX } from "@/components/ui/SocialIcons";
@@ -125,105 +126,103 @@ export function HeroSection() {
           <HeroScene />
         </WebGLGuard>
         {/* Extra overlay for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[hsl(var(--background)/0.3)] to-[hsl(var(--background))]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[hsl(var(--background)/0.1)] to-[hsl(var(--background))]" />
       </div>
 
       {/* Grid overlay */}
       <div className="absolute inset-0 grid-bg opacity-20 z-0" aria-hidden="true" />
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center max-w-5xl">
-        {/* Availability badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-[hsl(var(--border)/0.6)] text-sm text-[hsl(var(--muted-foreground))] mb-8">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          Available for opportunities
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/5 bg-background/50 backdrop-blur-xl">
+        <div className="container mx-auto flex items-center justify-between">
+          <Link
+            href="/"
+            className="text-2xl font-display font-bold text-white tracking-tighter"
+          >
+            TSP.
+          </Link>
+
+          <div className="hidden md:flex items-center gap-8">
+            {["About", "Projects", "Contact"].map((item) => (
+              <Link
+                key={item}
+                href={`/#${item.toLowerCase()}`}
+                className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+              >
+                {item}
+              </Link>
+            ))}
+            <Button size="sm" variant="primary" href="/contact">
+              Hire Me
+            </Button>
+          </div>
         </div>
+      </nav>
 
-        {/* Main heading */}
-        <h1
-          ref={headingRef}
-          className="font-display font-bold text-5xl sm:text-7xl lg:text-8xl leading-[1.05] tracking-tight mb-6"
-        >
-          <span className="text-[hsl(var(--foreground))]">Hi, I&apos;m </span>
-          <span className="gradient-text glow-text">Alex Chen</span>
-        </h1>
+      {/* Main content */}
+      <div className="container mx-auto px-6 relative z-10 text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-[10px] font-mono font-bold text-primary mb-8 ml-auto mr-auto md:ml-0 md:mr-0 animate-pulse tracking-widest uppercase">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              System Status: Available // 2025_PROTO
+            </div>
 
-        {/* Role rotator */}
-        <p
-          ref={subRef}
-          className="text-xl sm:text-2xl text-[hsl(var(--muted-foreground))] mb-2 font-medium"
-        >
-          A{" "}
-          <span
-            ref={roleRef}
-            className="text-[hsl(var(--primary))] font-semibold inline-block min-w-[260px]"
-          >
-            {ROLES[0]}
-          </span>
-        </p>
-        <p className="text-base sm:text-lg text-[hsl(var(--muted-foreground)/0.7)] max-w-2xl mx-auto mb-10">
-          I craft performant, beautiful digital experiences — from pixel-perfect
-          interfaces to scalable backend systems.
-        </p>
+            <h1 ref={headingRef} className="text-4xl xs:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight text-white mb-6">
+              <span className="text-sm font-mono text-primary/40 block mb-2 tracking-[0.3em] font-normal uppercase">Authorized_User:</span>
+              Hi, I'm <span className="gradient-text glow-text digital-flicker">Thusitha S. Perera</span><span className="animate-blink">_</span>
+            </h1>
 
-        {/* CTA buttons */}
-        <div ref={ctaRef} className="flex flex-wrap gap-4 justify-center mb-10">
-          <Button
-            variant="primary"
-            size="lg"
-            rightIcon={<ArrowDown className="w-4 h-4" />}
-            onClick={() =>
-              document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            View My Work
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            leftIcon={<Download className="w-4 h-4" />}
-            onClick={() => window.open("/resume.pdf", "_blank")}
-          >
-            Download CV
-          </Button>
-        </div>
+            <div className="flex flex-col items-center md:items-start space-y-4 mb-8 text-center md:text-left">
+              <h2 className="text-xl md:text-2xl text-muted-foreground font-medium flex flex-wrap items-center gap-2 justify-center md:justify-start">
+                <span className="text-primary font-mono tracking-tighter">[ Robotics & IoT Developer ]</span>
+                <span className="hidden md:inline text-border">|</span>
+                <span className="text-accent/80 font-mono text-sm tracking-widest uppercase">IT Undergraduate</span>
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed font-mono text-sm">
+                &gt;&gt; Initializing robotics mission control...
+                <br />
+                &gt;&gt; Target focus: autonomous machines, sensor integration, real-world deployment.
+                <br />
+                &gt;&gt; Current status: Designing next-gen IoT solutions.
+              </p>
+            </div>
 
-        {/* Social links */}
-        <div
-          ref={socialRef}
-          className="flex items-center justify-center gap-5"
-        >
-          {[
-            {
-              href: "https://github.com/alexchen",
-              icon: IconGithub,
-              label: "GitHub",
-            },
-            {
-              href: "https://linkedin.com/in/alexchen",
-              icon: IconLinkedin,
-              label: "LinkedIn",
-            },
-            {
-              href: "https://twitter.com/alexchen",
-              icon: IconTwitterX,
-              label: "Twitter",
-            },
-          ].map(({ href, icon: Icon, label }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="w-10 h-10 rounded-full glass flex items-center justify-center text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/0.4)] transition-all duration-200 hover:scale-110"
+            {/* CTA buttons */}
+            <div ref={ctaRef} className="flex flex-wrap gap-4 justify-center md:justify-start mb-10 relative">
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/50 to-transparent" />
+              <Button href="/#projects" variant="primary" size="lg" className="rounded-none border-l-4 border-primary">
+                Access Projects <span className="ml-2">_&gt;&gt;</span>
+              </Button>
+              <Button href="/cv_thusitha.pdf" external variant="secondary" size="lg" className="rounded-none">
+                File: CV_2025.txt
+              </Button>
+            </div>
+
+            {/* Socials */}
+            <div
+              ref={socialRef}
+              className="flex items-center gap-4 justify-center md:justify-start"
             >
-              <Icon className="w-4 h-4" />
-            </a>
-          ))}
-        </div>
+              {[
+                { icon: IconGithub, href: "https://github.com/thusitha3020", label: "GitHub" },
+                { icon: IconLinkedin, href: "https://www.linkedin.com/in/thusitha-sampath-7a21351a7", label: "LinkedIn" },
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 border border-primary/20 flex items-center justify-center text-primary/40 hover:text-primary hover:border-primary/60 transition-all duration-300 bg-primary/5 hover:bg-primary/10"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
+          </div>
       </div>
 
       {/* Scroll indicator */}

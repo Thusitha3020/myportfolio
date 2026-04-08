@@ -7,17 +7,17 @@ import { cn } from "@/lib/utils";
 
 const socialLinks = [
   {
-    href: "https://github.com/alexchen",
+    href: "https://github.com/thusitha3020",
     icon: IconGithub,
     label: "GitHub",
   },
   {
-    href: "https://linkedin.com/in/alexchen",
+    href: "https://www.linkedin.com/in/thusitha-sampath-7a21351a7",
     icon: IconLinkedin,
     label: "LinkedIn",
   },
   {
-    href: "https://twitter.com/alexchen",
+    href: "#",
     icon: IconTwitterX,
     label: "Twitter",
   },
@@ -48,28 +48,12 @@ export function Footer() {
               className="font-display font-bold text-2xl gradient-text"
               aria-label="Home"
             >
-              AC.
+              TSP.
             </Link>
             <p className="text-xs text-[hsl(var(--muted-foreground))] max-w-xs text-center md:text-left">
-              Building beautiful, performant web experiences with care.
+              Designing the future of Robotics & IoT with innovative engineering.
             </p>
           </div>
-
-          {/* Nav links */}
-          <nav aria-label="Footer navigation">
-            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2" role="list">
-              {footerLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
 
           {/* Social icons */}
           <div className="flex items-center gap-3">
@@ -93,11 +77,19 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-8 pt-6 border-t border-[hsl(var(--border)/0.3)] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[hsl(var(--muted-foreground)/0.6)]">
-          <p>© {year} Alex Chen. All rights reserved.</p>
+        {/* Bottom Line */}
+        <div className="mt-8 pt-6 border-t border-[hsl(var(--border)/0.3)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[hsl(var(--muted-foreground)/0.6)]">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <p>© {year} Thusitha S. Perera. All rights reserved.</p>
+            <a
+              href="mailto:thusitha3020@gmail.com"
+              className="hover:text-[hsl(var(--primary))] transition-colors"
+            >
+              thusitha3020@gmail.com
+            </a>
+          </div>
           <p className="flex items-center gap-1">
-            Built with <Heart className="w-3 h-3 text-[hsl(var(--accent))] fill-current" /> using Next.js &amp; GSAP
+            Built with <Heart className="w-3 h-3 text-[hsl(var(--accent))] fill-current" /> using Robotics Hub SDK
           </p>
         </div>
       </div>

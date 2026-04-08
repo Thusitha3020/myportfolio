@@ -6,43 +6,58 @@ interface MetadataOptions {
   title?: string;
   description?: string;
   image?: string;
+  icons?: string;
   path?: string;
   noIndex?: boolean;
 }
 
 const defaults = {
-  name: "Alex Chen",
-  title: "Full-Stack Engineer & Creative Developer",
+  name: "Thusitha Sampath Perera",
+  title: "Thusitha Sampath Perera — Robotics & IoT Engineer",
   description:
-    "Full-Stack Engineer specializing in scalable web applications, creative interfaces, and modern developer experiences. Explore my portfolio of projects.",
-  image: "/og-image.png",
+    "Robotics & IoT Enthusiast building autonomous systems, smart factory solutions, and embedded hardware. IT Undergraduate specialized in Robotics.",
+  siteName: "Thusitha Sampath Perera Portfolio",
+  url: "https://thusitha-dev.dev",
+  twitterHandle: "@thusitha_dev",
 };
 
-export function createMetadata(options: MetadataOptions = {}): Metadata {
-  const {
-    title,
-    description = defaults.description,
-    image = defaults.image,
-    path = "",
-    noIndex = false,
-  } = options;
-
-  const fullTitle = title
-    ? `${title} | ${defaults.name}`
-    : `${defaults.name} — ${defaults.title}`;
-
+export function createMetadata({
+  title = "Thusitha Sampath Perera — Robotics & IoT Engineer",
+  description = "Robotics and IoT solutions designed for real environments. Focus on autonomous systems, hardware/software integration, and industrial inspection.",
+  image = "/og-image.png",
+  icons = "/favicon.ico",
+  path = "",
+  noIndex = false,
+}: MetadataOptions = {}): Metadata {
   const url = `${BASE_URL}${path}`;
 
   return {
-    title: fullTitle,
+    title: {
+      default: title,
+      template: `%s | Thusitha S. Perera`,
+    },
     description,
+    keywords: [
+      "Robotics Engineer",
+      "IoT Developer",
+      "Autonomous Systems",
+      "Embedded Systems",
+      "Sri Lanka",
+      "Thusitha Sampath Perera",
+    ],
+    authors: [
+      {
+        name: "Thusitha Sampath Perera",
+        url: "https://github.com/thusitha3020",
+      },
+    ],
     metadataBase: new URL(BASE_URL),
     ...(noIndex && { robots: { index: false, follow: false } }),
     openGraph: {
-      title: fullTitle,
+      title,
       description,
       url,
-      siteName: defaults.name,
+      siteName: defaults.siteName,
       locale: "en_US",
       type: "website",
       images: [
@@ -50,16 +65,16 @@ export function createMetadata(options: MetadataOptions = {}): Metadata {
           url: image,
           width: 1200,
           height: 630,
-          alt: fullTitle,
+          alt: title,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: fullTitle,
+      title,
       description,
       images: [image],
-      creator: "@alexchen",
+      creator: defaults.twitterHandle,
     },
     alternates: {
       canonical: url,
