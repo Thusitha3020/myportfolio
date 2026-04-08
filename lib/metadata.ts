@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://portfolio.dev";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://thusitha3020.github.io/myportfolio";
 
 interface MetadataOptions {
   title?: string;
