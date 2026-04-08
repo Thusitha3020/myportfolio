@@ -1,0 +1,63 @@
+﻿
+> portfolio@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.2.2 (Turbopack)
+- Experiments (use with caution):
+  ┬╖ optimizePackageImports
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 4.5s
+  Running TypeScript ...
+  Finished TypeScript in 4.6s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/12) ...
+node.exe : Error occurred 
+prerendering page "/project
+s/nova-ai-dashboard". Read 
+more: https://nextjs.org/do
+cs/messages/prerender-error
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: (Err  
+  or occurred ...prerend   
+ er-error:String) [], R    
+emoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+Error: Event handlers 
+cannot be passed to Client 
+Component props.
+  {variant: "primary", 
+size: "md", leftIcon: ..., 
+className: ..., onClick: 
+function onClick, 
+children: ...}
+                           
+                           
+                     
+^^^^^^^^^^^^^^^^
+If you need interactivity, 
+consider converting part 
+of this to a Client 
+Component.
+    at stringify 
+(<anonymous>) {
+  digest: '1251780729'
+}
+Export encountered an 
+error on 
+/projects/[slug]/page: /pro
+jects/nova-ai-dashboard, 
+exiting the build.
+Γ¿» Next.js build worker 
+exited with code: 1 and 
+signal: null
