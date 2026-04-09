@@ -2,23 +2,23 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%; /* soft slate-50 */
+    --background: 214 32% 91%; /* metallic slate-200 */
     --foreground: 222 47% 11%; /* slate-900 */
 
-    --card: 0 0% 100%; /* white */
+    --card: 210 40% 95%; /* slate-100/150 */
     --card-foreground: 222 47% 11%;
 
-    --popover: 0 0% 100%;
+    --popover: 210 40% 95%;
     --popover-foreground: 222 47% 11%;
 
     --primary: 200 95% 40%; /* vivid tech blue */
     --primary-foreground: 0 0% 100%; /* white */
 
-    --secondary: 210 20% 90%; /* slate-200 */
+    --secondary: 215 16% 80%; /* slate-300 */
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 20% 90%;
-    --muted-foreground: 215 16% 47%; /* slate-500 */
+    --muted: 215 16% 80%;
+    --muted-foreground: 215 16% 40%; /* darker slate-600 */
 
     --accent: 230 84% 60%; /* energetic purplish blue */
     --accent-foreground: 0 0% 100%;

@@ -42,7 +42,7 @@ export function HudOverlay() {
         {[...Array(3)].map((_, i) => (
           <div key={i} className="flex flex-col gap-1 items-start group">
             <div className="w-1 h-8 bg-primary/20 group-hover:bg-primary/50 transition-colors" />
-            <span className="text-[10px] font-mono text-primary/40 tracking-tighter">
+            <span className="text-[10px] font-mono text-primary/40 tracking-tighter" suppressHydrationWarning>
               CH_{i+1} : {Math.random().toFixed(4)}
             </span>
           </div>
