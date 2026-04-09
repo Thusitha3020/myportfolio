@@ -74,7 +74,7 @@ function HardwareLattice() {
           size={0.06}
           sizeAttenuation
           depthWrite={false}
-          blending={THREE.AdditiveBlending}
+          blending={THREE.NormalBlending}
         />
       </Points>
       {wireLines.map((line, i) => (
@@ -110,7 +110,7 @@ function TechGrid() {
     <Points positions={gridPositions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color="#06b6d4"
+        color="#3b82f6"
         size={0.02}
         sizeAttenuation
         depthWrite={false}
