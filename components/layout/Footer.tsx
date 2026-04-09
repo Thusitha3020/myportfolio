@@ -89,7 +89,7 @@ export function Footer() {
             </a>
           </div>
           <p className="flex items-center gap-1">
-            Built with <Heart className="w-3 h-3 text-[hsl(var(--accent))] fill-current" /> using Robotics Hub SDK
+            Built with <Heart className="w-3 h-3 text-[hsl(var(--accent))] fill-current" />
           </p>
         </div>
       </div>
