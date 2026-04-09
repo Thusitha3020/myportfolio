@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Heart } from "lucide-react";
 import { IconGithub, IconLinkedin, IconTwitterX } from "@/components/ui/SocialIcons";
 import { cn } from "@/lib/utils";
 
@@ -88,9 +87,6 @@ export function Footer() {
               thusitha3020@gmail.com
             </a>
           </div>
-          <p className="flex items-center gap-1">
-            Built with <Heart className="w-3 h-3 text-[hsl(var(--accent))] fill-current" />
-          </p>
         </div>
       </div>
     </footer>
