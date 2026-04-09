@@ -74,9 +74,9 @@ export function Navbar() {
           <Link
             href="/"
             className="font-display font-bold text-xl gradient-text hover:opacity-80 transition-opacity"
-            aria-label="Alex Chen — Home"
+            aria-label="Thusitha S. Perera — Home"
           >
-            AC.
+            TSP.
           </Link>
 
           {/* Desktop links */}

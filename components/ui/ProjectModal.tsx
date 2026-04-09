@@ -92,11 +92,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 </Badge>
                 <h2
                   id="modal-title"
-                  className="font-display font-bold text-2xl text-white leading-tight"
+                  className="font-display font-bold text-2xl text-[hsl(var(--foreground))] leading-tight"
                 >
                   {project.title}
                 </h2>
-                <p className="text-white/70 text-sm mt-0.5">{project.tagline}</p>
+                <p className="text-[hsl(var(--muted-foreground))] text-sm mt-0.5">{project.tagline}</p>
               </div>
             </div>
 

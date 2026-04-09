@@ -137,7 +137,7 @@ export function HeroSection() {
         <div className="container mx-auto flex items-center justify-between">
           <Link
             href="/"
-            className="text-2xl font-display font-bold text-white tracking-tighter"
+            className="text-2xl font-display font-bold text-[hsl(var(--foreground))] tracking-tighter"
           >
             TSP.
           </Link>
@@ -147,7 +147,7 @@ export function HeroSection() {
               <Link
                 key={item}
                 href={`/#${item.toLowerCase()}`}
-                className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+                className="text-sm font-medium text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors"
               >
                 {item}
               </Link>
@@ -170,7 +170,7 @@ export function HeroSection() {
               System Status: Available // 2025_PROTO
             </div>
 
-            <h1 ref={headingRef} className="text-4xl xs:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight text-white mb-6">
+            <h1 ref={headingRef} className="text-4xl xs:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight text-[hsl(var(--foreground))] mb-6">
               <span className="text-sm font-mono text-primary/40 block mb-2 tracking-[0.3em] font-normal uppercase">Authorized_User:</span>
               Hi, I'm <span className="gradient-text glow-text digital-flicker">Thusitha S. Perera</span><span className="animate-blink">_</span>
             </h1>
