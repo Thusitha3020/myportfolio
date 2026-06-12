@@ -109,7 +109,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         src={getAssetPath(img)}
                         alt={`${project.title} screenshot ${index + 1}`}
                         fill
-                        className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                        className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                         priority={index === 0}
                       />
                     </div>

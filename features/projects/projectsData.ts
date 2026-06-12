@@ -56,10 +56,10 @@ export const projects: Project[] = [
       "An automated traffic control setup where signals change based on programmed logic and interact with moving vehicles.",
     longDescription:
       "A group project focused on the implementation of a Smart Traffic Light System integrated with miniature R/C cars. The project involved creating advanced signal timing logic to optimize traffic flow based on real-time hardware status. \n\nWhat I worked on:\n- Signal timing logic development\n- Microcontroller programming\n- Hardware setup and assembly",
-    image:
-      "https://images.unsplash.com/photo-1590432805510-09374ee3238a?w=800&h=500&fit=crop",
+    image: "/images/carproject3.jpeg",
     images: [
-      "https://images.unsplash.com/photo-1590432805510-09374ee3238a?w=800&h=500&fit=crop",
+      "/images/carproject1.jpeg",
+      "/images/carproject2.jpeg",
     ],
     techStack: ["Microcontrollers", "Timing Logic", "Hardware Integration", "Embedded C"],
     category: "Embedded",
