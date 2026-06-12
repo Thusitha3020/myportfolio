@@ -28,8 +28,7 @@ export function ProjectsSection() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-[hsl(var(--muted-foreground))] mt-4 max-w-xl mx-auto leading-relaxed">
-            A selection of products I&apos;ve built — spanning full-stack apps,
-            design systems, and creative experiments.
+            A collection of projects, research initiatives, and technical achievements showcasing my expertise in software development, IoT, robotics, artificial intelligence, and innovative problem-solving.
           </p>
         </AnimatedContainer>
 

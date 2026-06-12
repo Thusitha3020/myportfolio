@@ -114,6 +114,7 @@ export const projects: Project[] = [
     ],
     category: "Embedded",
     featured: true,
+    githubUrl: "https://github.com/Thusitha3020/Smart_Security_Dashboard",
     videoUrl: "https://drive.google.com/drive/folders/11x1oXGsw_bjGOjhCCJxg24icrUiZi9qi?usp=sharing",
     year: "2026",
     status: "completed",
