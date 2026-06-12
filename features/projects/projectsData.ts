@@ -91,7 +91,7 @@ export const projects: Project[] = [
     id: "4",
     slug: "smart-door-lock",
     title: "Smart Access Control System",
-    tagline: "RFID & biometric security automation",
+    tagline: "RFID security automation",
     description:
       "A secure embedded security system integrating RFID authentication, keypad access, and real-time Bluetooth monitoring.",
     longDescription:
