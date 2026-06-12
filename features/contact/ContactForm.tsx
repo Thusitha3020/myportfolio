@@ -6,6 +6,7 @@ import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { AnimatedContainer } from "@/components/ui/AnimatedContainer";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import emailjs from "@emailjs/browser";
 
 interface FormState {
   name: string;
@@ -33,6 +34,7 @@ export function ContactForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -46,15 +48,47 @@ export function ContactForm() {
     setIsLoading(true);
     setError(null);
 
-    // Simulate form submission (replace with EmailJS or server action)
-    await new Promise((r) => setTimeout(r, 1500));
+    // Honeypot check: If bot filled the hidden input, ignore request to save API quota
+    if (honeypot) {
+      await new Promise((r) => setTimeout(r, 1000));
+      setSent(true);
+      setForm({ name: "", email: "", subject: "", message: "" });
+      setHoneypot("");
+      setIsLoading(false);
+      return;
+    }
 
-    // Note: Replace the following with real EmailJS call:
-    // await emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY)
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-    setIsLoading(false);
-    setSent(true);
-    setForm({ name: "", email: "", subject: "", message: "" });
+    if (!serviceId || !templateId || !publicKey) {
+      setError("Email service configuration is missing. Please check your environment setup.");
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          reply_to: form.email,
+          subject: form.subject || "No Subject",
+          message: form.message,
+        },
+        publicKey
+      );
+      setSent(true);
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (err: any) {
+      console.error("EmailJS Error:", err);
+      setError(err?.text || "Failed to send message. Please check your internet connection or try again later.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -149,6 +183,17 @@ export function ContactForm() {
               className="space-y-4"
               noValidate
             >
+              {/* Honeypot field (hidden from screen readers and visual layout) to catch spam bots */}
+              <div style={{ display: "none" }} aria-hidden="true">
+                <input
+                  type="text"
+                  name="website_url"
+                  tabIndex={-1}
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  autoComplete="off"
+                />
+              </div>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label

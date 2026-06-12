@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ArrowUpRight, Play, Trophy } from "lucide-react";
 import { IconGithub } from "@/components/ui/SocialIcons";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
@@ -118,6 +118,11 @@ export function ProjectCard({
               Loading...
             </Badge>
           )}
+          {project.award && (
+            <Badge variant="accent" className="rounded-none font-mono text-[9px] uppercase tracking-wider h-5 flex items-center">
+              🏆 Awarded
+            </Badge>
+          )}
         </div>
 
         {/* Year */}
@@ -150,6 +155,12 @@ export function ProjectCard({
           <p className="text-sm text-[hsl(var(--muted-foreground))] mt-0.5 font-medium font-mono">
             // {project.tagline}
           </p>
+          {project.award && (
+            <div className="flex items-center gap-1.5 mt-2 text-xs font-mono text-accent">
+              <Trophy className="w-3.5 h-3.5" />
+              <span className="line-clamp-1">{project.award}</span>
+            </div>
+          )}
         </div>
 
         <p className="text-sm text-[hsl(var(--muted-foreground))] leading-relaxed line-clamp-2">
@@ -182,6 +193,21 @@ export function ProjectCard({
             >
               <IconGithub className="w-3.5 h-3.5" />
               Src_Code
+            </a>
+          )}
+          {project.videoUrl && (
+            <a
+              href={project.videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className={cn(
+                "flex items-center gap-1.5 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors",
+                !project.liveUrl && "ml-auto"
+              )}
+            >
+              <Play className="w-3.5 h-3.5" />
+              Video_Demo
             </a>
           )}
           {project.liveUrl && (

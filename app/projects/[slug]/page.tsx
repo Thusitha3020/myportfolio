@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Calendar } from "lucide-react";
+import { ArrowLeft, ExternalLink, Calendar, Play, Trophy } from "lucide-react";
 import { IconGithub } from "@/components/ui/SocialIcons";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -88,6 +88,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   ? "⚡ In Progress"
                   : "Archived"}
             </Badge>
+            {project.award && (
+              <Badge variant="accent" size="md" className="flex items-center gap-1">
+                <Trophy className="w-3.5 h-3.5" />
+                Award Winner
+              </Badge>
+            )}
           </div>
 
           <h1 className="font-display font-bold text-4xl sm:text-5xl text-[hsl(var(--foreground))] leading-tight mb-2">
@@ -102,6 +108,16 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <div className="grid lg:grid-cols-3 gap-10">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-8">
+            {project.award && (
+              <div className="p-5 rounded-2xl border border-accent/20 bg-accent/5 flex items-start gap-4">
+                <Trophy className="w-6 h-6 text-accent shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="font-display font-semibold text-accent text-xs uppercase tracking-wider">Achievement / Award</h3>
+                  <p className="text-base text-[hsl(var(--foreground))] mt-1 leading-relaxed font-medium">{project.award}</p>
+                </div>
+              </div>
+            )}
+            
             <section aria-labelledby="about-project">
               <h2
                 id="about-project"
@@ -164,6 +180,18 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   external
                 >
                   View Live Demo
+                </Button>
+              )}
+              {project.videoUrl && (
+                <Button
+                  variant="accent"
+                  size="md"
+                  leftIcon={<Play className="w-4 h-4" />}
+                  className="w-full"
+                  href={project.videoUrl}
+                  external
+                >
+                  Watch Video
                 </Button>
               )}
               {project.githubUrl && (
