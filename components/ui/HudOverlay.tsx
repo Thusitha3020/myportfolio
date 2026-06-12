@@ -14,11 +14,11 @@ export function HudOverlay() {
     window.addEventListener("mousemove", handleMouseMove);
     
     const timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
+      setTime(new Date().toLocaleString());
     }, 1000);
     
     // Initial set
-    setTime(new Date().toLocaleTimeString());
+    setTime(new Date().toLocaleString());
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
