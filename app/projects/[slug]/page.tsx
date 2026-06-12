@@ -10,6 +10,7 @@ import {
   projects,
   getProjectBySlug,
 } from "@/features/projects/projectsData";
+import { getAssetPath } from "@/lib/utils";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -53,7 +54,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         {/* Hero image */}
         <div className="relative aspect-video rounded-2xl overflow-hidden mb-10 shadow-2xl">
           <Image
-            src={project.image}
+            src={getAssetPath(project.image)}
             alt={project.title}
             fill
             className="object-cover"
@@ -134,7 +135,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {project.images[1] && (
               <div className="relative aspect-video rounded-xl overflow-hidden">
                 <Image
-                  src={project.images[1]}
+                  src={getAssetPath(project.images[1])}
                   alt={`${project.title} — additional screenshot`}
                   fill
                   className="object-cover"

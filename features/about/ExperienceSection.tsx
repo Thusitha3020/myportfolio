@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Briefcase, Trophy, ArrowUpRight, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { getAssetPath } from "@/lib/utils";
 
 const experiences = [
   {
@@ -224,7 +225,7 @@ export function ExperienceSection() {
                           className="relative aspect-video rounded-2xl overflow-hidden bg-black/30 border border-[hsl(var(--border)/0.4)] group"
                         >
                           <Image
-                            src={img}
+                            src={getAssetPath(img)}
                             alt={`${activeAchievement.title} image ${index + 1}`}
                             fill
                             sizes="(max-width: 768px) 100vw, 300px"

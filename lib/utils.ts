@@ -53,3 +53,14 @@ export function getScreenSize(): "mobile" | "tablet" | "desktop" {
   if (width < 1024) return "tablet";
   return "desktop";
 }
+
+/** Get the basePath-prefixed path for static assets on GitHub Pages */
+export function getAssetPath(src: string): string {
+  if (!src) return "";
+  if (src.startsWith("http://") || src.startsWith("https://")) return src;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const cleanSrc = src.startsWith("/") ? src.slice(1) : src;
+  const cleanBasePath = basePath.endsWith("/") ? basePath : `${basePath}/`;
+  if (cleanBasePath === "/") return `/${cleanSrc}`;
+  return `${cleanBasePath}${cleanSrc}`;
+}

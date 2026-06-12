@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { ExternalLink, ArrowUpRight, Play, Trophy } from "lucide-react";
 import { IconGithub } from "@/components/ui/SocialIcons";
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
 import { applyCardTilt, resetCardTilt } from "@/lib/animations";
 import type { Project } from "@/features/projects/projectsData";
@@ -69,7 +69,7 @@ export function ProjectCard({
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none z-10" />
 
         <Image
-          src={project.image}
+          src={getAssetPath(project.image)}
           alt={project.title}
           fill
           className={cn(

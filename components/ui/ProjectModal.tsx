@@ -8,6 +8,7 @@ import { IconGithub } from "@/components/ui/SocialIcons";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import type { Project } from "@/features/projects/projectsData";
+import { getAssetPath } from "@/lib/utils";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -105,7 +106,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       className="relative aspect-video rounded-2xl overflow-hidden bg-black/30 border border-[hsl(var(--border)/0.4)] group"
                     >
                       <Image
-                        src={img}
+                        src={getAssetPath(img)}
                         alt={`${project.title} screenshot ${index + 1}`}
                         fill
                         className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
