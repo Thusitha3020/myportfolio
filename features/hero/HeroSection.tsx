@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { WebGLGuard } from "@/components/three/WebGLGuard";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { createHeroTimeline } from "@/lib/animations";
+import { getAssetPath } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -196,7 +197,7 @@ export function HeroSection() {
               <Button href="/#projects" variant="primary" size="lg" className="rounded-none border-l-4 border-primary">
                 Access Projects <span className="ml-2">_&gt;&gt;</span>
               </Button>
-              <Button href="/cv_thusitha.pdf" external variant="secondary" size="lg" className="rounded-none">
+              <Button href={getAssetPath("/cv_thusitha.pdf")} external variant="secondary" size="lg" className="rounded-none">
                 File: CV_2025.txt
               </Button>
             </div>
